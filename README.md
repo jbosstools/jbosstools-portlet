@@ -1,5 +1,9 @@
 # The Portlet Tools project
 
+## Summary
+
+Portlet Tools provides wizards for working with GateIn and JBoss Enterprise Portal Platform.
+
 ## Install
 
 _Portlet Tools_ is part of [JBoss Tools](http://jboss.org/tools) from
