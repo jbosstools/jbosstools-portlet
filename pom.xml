@@ -8,8 +8,9 @@
 		<relativePath>../build/parent/pom.xml</relativePath>
 	</parent>
 	<groupId>org.jboss.tools</groupId>
-	<artifactId>portlet.all</artifactId>
+	<artifactId>portlet</artifactId>
 	<version>1.4.0-SNAPSHOT</version>
+	<name>portlet.all</name>	
 	<packaging>pom</packaging>
 	<modules>
 		<module>features</module>
