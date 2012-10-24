@@ -23,11 +23,6 @@
 			<id>bootstrap</id>
 			<modules>
 				<module>../javaee</module>
-				<module>../server</module>
-				<module>../jst</module>
-				<module>../vpe</module>
-				<module>../xulrunner</module>
-				<module>../base</module>
 			</modules>
 		</profile>
 	</profiles>
