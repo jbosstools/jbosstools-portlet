@@ -18,12 +18,4 @@
 		<module>tests</module>
 		<module>site</module>
 	</modules>
-	<profiles>
-		<profile>
-			<id>bootstrap</id>
-			<modules>
-				<module>../javaee</module>
-			</modules>
-		</profile>
-	</profiles>
 </project>
