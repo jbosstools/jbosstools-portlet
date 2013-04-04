@@ -30,8 +30,8 @@ import org.eclipse.wst.server.core.IRuntime;
 import org.jboss.ide.eclipse.as.classpath.core.jee.AbstractClasspathContainer;
 import org.jboss.ide.eclipse.as.classpath.core.jee.AbstractClasspathContainerInitializer;
 import org.jboss.ide.eclipse.as.classpath.core.xpl.ClasspathDecorations;
-import org.jboss.ide.eclipse.as.core.server.IJBossServerConstants;
 import org.jboss.ide.eclipse.as.core.server.IJBossServerRuntime;
+import org.jboss.ide.eclipse.as.core.util.IJBossRuntimeResourceConstants;
 import org.jboss.tools.portlet.core.IPortletConstants;
 import org.jboss.tools.portlet.core.Messages;
 import org.jboss.tools.portlet.core.PortletCoreActivator;
@@ -60,12 +60,10 @@ public class PortletRuntimeLibrariesContainerInitializer extends
 	public class PortletRuntimeClasspathContainer extends
 			BasePortletClasspathContainer {
 
+		private static final String LIB = "/lib"; //$NON-NLS-1$
+
 		public PortletRuntimeClasspathContainer(IPath path, IJavaProject project) {
-			super(
-					project,
-					path,
-					Messages.PortletLibrariesContainerInitializer_JBoss_Portlet_Library,
-					SUFFIX);
+			super(project, path, Messages.PortletLibrariesContainerInitializer_JBoss_Portlet_Library, SUFFIX);
 		}
 
 		@Override
@@ -136,47 +134,40 @@ public class PortletRuntimeLibrariesContainerInitializer extends
 			if (runtime == null) {
 				return null;
 			}
-			File libDirectory = null;
 			IJBossServerRuntime jbossRuntime = (IJBossServerRuntime)runtime.loadAdapter(IJBossServerRuntime.class, new NullProgressMonitor());
-			if (jbossRuntime != null) {
-				// JBoss Portal server
-				IPath jbossLocation = runtime.getLocation();
-				IPath configPath = jbossLocation.append(IJBossServerConstants.SERVER).append(jbossRuntime.getJBossConfiguration());
-				location = configPath.toFile();
-				libDirectory = getDirectory(location,IPortletConstants.SERVER_DEFAULT_DEPLOY_JBOSS_PORTAL_SAR);
+			if (jbossRuntime == null) {
+				return null;
+			}
+			final String[] directories = {
+					IPortletConstants.SERVER_DEFAULT_DEPLOY_JBOSS_PORTAL_SAR + LIB,
+					IPortletConstants.SERVER_DEFAULT_DEPLOY_SIMPLE_PORTAL,
+					IPortletConstants.SERVER_DEFAULT_DEPLOY_SIMPLE_PORTAL_SAR + LIB,
+					IPortletConstants.SERVER_DEFAULT_DEPLOY_JBOSS_PORTAL_HA_SAR + LIB,
+					IPortletConstants.SERVER_DEFAULT_DEPLOY_GATEIN + LIB
+					};
+			IPath jbossLocation = runtime.getLocation();
+			IPath configPath = jbossLocation.append(IJBossRuntimeResourceConstants.SERVER).append(jbossRuntime.getJBossConfiguration());
+			location = configPath.toFile();
+			for (String dir:directories) {
+				File libDirectory = getDirectory(location, dir);
 				if (libDirectory != null) {
-					libDirectory = new File(libDirectory, "lib"); //$NON-NLS-1$
-				} else {
-					libDirectory = getDirectory(location,
-						IPortletConstants.SERVER_DEFAULT_DEPLOY_SIMPLE_PORTAL);
-					if (libDirectory == null) {
-						libDirectory = getDirectory(location,
-								IPortletConstants.SERVER_DEFAULT_DEPLOY_SIMPLE_PORTAL_SAR);
-					}
-					if (libDirectory != null) {
-						libDirectory = new File(libDirectory, "lib"); //$NON-NLS-1$
-					} else {
-						libDirectory = getDirectory(location,
-							IPortletConstants.SERVER_DEFAULT_DEPLOY_JBOSS_PORTAL_HA_SAR);
-						if (libDirectory != null) {
-							libDirectory = new File(libDirectory, "lib"); //$NON-NLS-1$
-						} else {
-							libDirectory = getDirectory(location,
-									IPortletConstants.SERVER_DEFAULT_DEPLOY_GATEIN);
-							if (libDirectory != null) {
-								libDirectory = new File(libDirectory, "lib"); //$NON-NLS-1$
-							} else {
-								libDirectory = getDirectory(jbossLocation.toFile(), IPortletConstants.GATEIN_MODULES_JAVAX_PORTLET_API_MAIN);
-								if (libDirectory == null) {
-								// Tomcat adds portlet-api.jar automatically
-								}
-							}
-						}
-					}
+					return libDirectory;
+				}
+			}
+			final String[] directories2 = { 
+					IPortletConstants.GATEIN_MODULES_JAVAX_PORTLET_API_MAIN,
+					IPortletConstants.MODULES_JAVAX_PORTLET_API_MAIN,
+					IPortletConstants.MODULES_JAVAX_PORTLET_API_MAIN72
+			};
+			File file = jbossLocation.toFile();
+			for (String dir:directories2) {
+				File libDirectory = getDirectory(file, dir);
+				if (libDirectory != null) {
+					return libDirectory;
 				}
 			}
 				
-			return libDirectory;
+			return null;
 		}
 
 		private File getDirectory(File location, String portalDir) {

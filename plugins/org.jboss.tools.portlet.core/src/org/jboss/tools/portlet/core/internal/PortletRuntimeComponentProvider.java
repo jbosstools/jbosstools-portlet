@@ -87,6 +87,10 @@ public class PortletRuntimeComponentProvider extends
 			if (exists(jbossLocation.toFile(), IPortletConstants.SERVER_DEFAULT_DEPLOY_GATEIN33)) {
 				return true;
 			}
+			// JBoss JPP 6.0
+			if (exists(jbossLocation.toFile(), IPortletConstants.SERVER_DEFAULT_DEPLOY_JPP60)) {
+				return true;
+			}
 			return false;
 		}
 		// Tomcat portletcontainer

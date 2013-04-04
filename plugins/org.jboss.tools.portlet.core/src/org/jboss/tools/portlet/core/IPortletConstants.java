@@ -82,8 +82,15 @@ public interface IPortletConstants {
 	static final String SERVER_DEFAULT_DEPLOY_GATEIN = "deploy/gatein.ear"; //$NON-NLS-1$
 	
 	static final String SERVER_DEFAULT_DEPLOY_GATEIN33 = "standalone/deployments/gatein.ear"; //$NON-NLS-1$
+	
+	static final String SERVER_DEFAULT_DEPLOY_JPP60 = "gatein/gatein.ear"; //$NON-NLS-1$
+	
 
 	static final String GATEIN_MODULES_JAVAX_PORTLET_API_MAIN = "gatein/modules/javax/portlet/api/main"; //$NON-NLS-1$
+	
+	static final String MODULES_JAVAX_PORTLET_API_MAIN = "modules/javax/portlet/api/main"; //$NON-NLS-1$
+	
+	static final String MODULES_JAVAX_PORTLET_API_MAIN72 = "modules/system/layers/base/javax/portlet/api/main"; //$NON-NLS-1$
 	
 	static final String TOMCAT_LIB = "lib"; //$NON-NLS-1$
 
