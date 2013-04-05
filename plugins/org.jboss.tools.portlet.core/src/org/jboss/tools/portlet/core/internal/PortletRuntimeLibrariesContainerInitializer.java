@@ -157,7 +157,8 @@ public class PortletRuntimeLibrariesContainerInitializer extends
 			final String[] directories2 = { 
 					IPortletConstants.GATEIN_MODULES_JAVAX_PORTLET_API_MAIN,
 					IPortletConstants.MODULES_JAVAX_PORTLET_API_MAIN,
-					IPortletConstants.MODULES_JAVAX_PORTLET_API_MAIN72
+					IPortletConstants.MODULES_JAVAX_PORTLET_API_MAIN72,
+					IPortletConstants.MODULES_JAVAX_PORTLET_API_JPP61
 			};
 			File file = jbossLocation.toFile();
 			for (String dir:directories2) {
