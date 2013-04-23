@@ -127,12 +127,15 @@ public class JSFPortletFacetInstallDelegate implements IDelegate {
 						.getFacesConfigArtifactEditForWrite(project,
 								facesConfigs.get(0));
 				FacesConfigType facesConfig = facesConfigEdit.getFacesConfig();
-				EList applications = facesConfig.getApplication();
-				ApplicationType application = FacesConfigFactory.eINSTANCE.createApplicationType();
-				state.application = application;
-				state.facesConfigString = facesConfigs.get(0);
-				facesConfig.getApplication().add(application);
-				facesConfigEdit.save(monitor);
+				if (facesConfig != null) {
+					EList applications = facesConfig.getApplication();
+					ApplicationType application = FacesConfigFactory.eINSTANCE
+							.createApplicationType();
+					state.application = application;
+					state.facesConfigString = facesConfigs.get(0);
+					facesConfig.getApplication().add(application);
+					facesConfigEdit.save(monitor);
+				}
 			} finally {
 				if (facesConfigEdit != null) {
 					facesConfigEdit.dispose();
@@ -143,17 +146,22 @@ public class JSFPortletFacetInstallDelegate implements IDelegate {
 		try {
 			facesConfigEdit = FacesConfigArtifactEdit.getFacesConfigArtifactEditForWrite(project,state.facesConfigString);
 			FacesConfigType facesConfig = facesConfigEdit.getFacesConfig();
-			if (!state.viewHandlerExists) {
-				ViewHandlerType viewHandler = FacesConfigFactory.eINSTANCE.createViewHandlerType();
-				viewHandler.setTextContent(ORG_JBOSS_PORTLET_VIEW_HANDLER);
-				state.application.getViewHandler().add(viewHandler);
+			if (facesConfig != null) {
+				if (!state.viewHandlerExists) {
+					ViewHandlerType viewHandler = FacesConfigFactory.eINSTANCE
+							.createViewHandlerType();
+					viewHandler.setTextContent(ORG_JBOSS_PORTLET_VIEW_HANDLER);
+					state.application.getViewHandler().add(viewHandler);
+				}
+				if (!state.stateManagerExists) {
+					StateManagerType stateManager = FacesConfigFactory.eINSTANCE
+							.createStateManagerType();
+					stateManager
+							.setTextContent(ORG_JBOSS_PORTLET_STATE_MANAGER);
+					state.application.getStateManager().add(stateManager);
+				}
+				facesConfigEdit.save(monitor);
 			}
-			if (!state.stateManagerExists) {
-				StateManagerType stateManager = FacesConfigFactory.eINSTANCE.createStateManagerType();
-				stateManager.setTextContent(ORG_JBOSS_PORTLET_STATE_MANAGER);
-				state.application.getStateManager().add(stateManager);
-			}
-			facesConfigEdit.save(monitor);
 
 		} finally {
 			if (facesConfigEdit != null) {
@@ -169,6 +177,9 @@ public class JSFPortletFacetInstallDelegate implements IDelegate {
 			try {
 				facesConfigEdit = FacesConfigArtifactEdit.getFacesConfigArtifactEditForRead(project,facesConfigString);
 				FacesConfigType facesConfig = facesConfigEdit.getFacesConfig();
+				if (facesConfig == null) {
+					continue;
+				}
 				EList applications = facesConfig.getApplication();
 				if (applications.size() <= 0) {
 					continue;
