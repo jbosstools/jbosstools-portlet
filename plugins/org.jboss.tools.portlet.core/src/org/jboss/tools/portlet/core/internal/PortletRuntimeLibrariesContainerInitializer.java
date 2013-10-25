@@ -158,7 +158,8 @@ public class PortletRuntimeLibrariesContainerInitializer extends
 					IPortletConstants.GATEIN_MODULES_JAVAX_PORTLET_API_MAIN,
 					IPortletConstants.MODULES_JAVAX_PORTLET_API_MAIN,
 					IPortletConstants.MODULES_JAVAX_PORTLET_API_MAIN72,
-					IPortletConstants.MODULES_JAVAX_PORTLET_API_JPP61
+					IPortletConstants.MODULES_JAVAX_PORTLET_API_JPP61,
+					IPortletConstants.MODULES_JAVAX_PORTLET_API_JPP61a
 			};
 			File file = jbossLocation.toFile();
 			for (String dir:directories2) {

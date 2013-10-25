@@ -94,6 +94,8 @@ public interface IPortletConstants {
 	
 	static final String MODULES_JAVAX_PORTLET_API_JPP61 = "modules/system/add-ons/gatein/javax/portlet/api/main/"; //$NON-NLS-1$
 	
+	static final String MODULES_JAVAX_PORTLET_API_JPP61a = "modules/system/layers/gatein/javax/portlet/api/main/"; //$NON-NLS-1$
+	
 	static final String TOMCAT_LIB = "lib"; //$NON-NLS-1$
 
 	static final String JAR = ".jar"; //$NON-NLS-1$
