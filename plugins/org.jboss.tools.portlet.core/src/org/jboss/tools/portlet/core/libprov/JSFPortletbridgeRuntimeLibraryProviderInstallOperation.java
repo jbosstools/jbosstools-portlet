@@ -34,8 +34,8 @@ public class JSFPortletbridgeRuntimeLibraryProviderInstallOperation extends
 		IProject project = facetedProject.getProject();
 		JSFPortletbridgeRuntimeLibraryProviderInstallOperationConfig portletbridgeConfig = (JSFPortletbridgeRuntimeLibraryProviderInstallOperationConfig) config;
 		String pbRuntime = portletbridgeConfig.getPortletbridgeHome();
-		getPortletbridgeLibraries(monitor, project, pbRuntime);
 		boolean addRichfacesCapabilities = portletbridgeConfig.isAddRichfacesCapabilities();
+		getPortletbridgeLibraries(monitor, project, pbRuntime, addRichfacesCapabilities);
 		boolean isEPP = portletbridgeConfig.isEPP();
 		String richfacesType = portletbridgeConfig.getRichfacesType();
 		String richfacesRuntime = portletbridgeConfig.getRichfacesRuntime();
@@ -54,7 +54,7 @@ public class JSFPortletbridgeRuntimeLibraryProviderInstallOperation extends
 	}
 
 	private void getPortletbridgeLibraries(IProgressMonitor monitor,
-			IProject project, String pbRuntime) {
+			IProject project, String pbRuntime, final boolean addRichfacesCapabilities) {
 		if (pbRuntime != null && pbRuntime.trim().length() > 0) {
 			pbRuntime = pbRuntime.trim();
 			File pbFolder = new File(pbRuntime);
@@ -62,6 +62,9 @@ public class JSFPortletbridgeRuntimeLibraryProviderInstallOperation extends
 				String[] fileList = pbFolder.list(new FilenameFilter() {
 
 					public boolean accept(File dir, String name) {
+						if (!addRichfacesCapabilities && name.contains("richfaces")) {
+							return false;
+						}
 						if (name.startsWith("portletbridge") || name.endsWith(".jar")) { //$NON-NLS-1$ //$NON-NLS-2$
 							return true;
 						}

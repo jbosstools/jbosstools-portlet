@@ -18,7 +18,6 @@ import java.util.StringTokenizer;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jst.common.project.facet.core.libprov.LibraryInstallDelegate;
 import org.eclipse.jst.j2ee.model.IModelProvider;
@@ -36,6 +35,7 @@ import org.jboss.tools.portlet.core.JBossWebUtil;
 import org.jboss.tools.portlet.core.JBossWebUtil25;
 import org.jboss.tools.portlet.core.Messages;
 import org.jboss.tools.portlet.core.PortletCoreActivator;
+import org.jboss.tools.portlet.core.internal.util.PortletUtil;
 
 /**
  * @author snjeza
@@ -88,11 +88,12 @@ public class JSFPortletFacetInstallDelegate implements IDelegate {
 				}
 			}
 
-			configureFacesConfig(project, monitor, config);
-
+			
 			//Configure libraries
 			( (LibraryInstallDelegate) config.getProperty( IPortletConstants.JSFPORTLET_LIBRARY_PROVIDER_DELEGATE ) ).execute( monitor );
 			
+			configureFacesConfig(project, monitor, config, fv);
+
 			if (monitor != null) {
 				monitor.worked(1);
 			}
@@ -105,8 +106,12 @@ public class JSFPortletFacetInstallDelegate implements IDelegate {
 	}
 
 	private void configureFacesConfig(IProject project,
-			IProgressMonitor monitor, IDataModel config) {
+			IProgressMonitor monitor, IDataModel config, IProjectFacetVersion fv) {
 
+		int version = PortletUtil.getPortletBridgeVersion(project);
+		if (version >= 3) {
+			return;
+		}
 		String facesConfigString = getFacesConfigFile(project, monitor);
 		if (facesConfigString == null || facesConfigString.trim().length() <= 0) {
 			return;
