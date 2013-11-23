@@ -346,4 +346,9 @@ public class PortletCoreActivator extends Plugin {
 			return true;
 		return false;
 	}
+
+	public static void logMessage(String message) {
+		IStatus status = new Status(IStatus.INFO, PLUGIN_ID, message);
+		PortletCoreActivator.getDefault().getLog().log(status);
+	}
 }
