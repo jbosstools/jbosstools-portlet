@@ -54,11 +54,18 @@ public abstract class AbstractLibraryProviderInstallOperationConfig extends
 		if (!folder.exists() || !folder.isDirectory()) {
 			return getInvalidRichfacesRuntime();
 		}
-		folder = new File(folder,"lib"); //$NON-NLS-1$
-		if (!folder.exists() || !folder.isDirectory()) {
+		File lib = new File(folder,"lib"); //$NON-NLS-1$
+		if (!lib.isDirectory()) {
+			// RF 4.x
+			File artifacts = new File(folder, "artifacts"); //$NON-NLS-1$
+			File ui = new File(artifacts, "ui"); //$NON-NLS-1$
+			File framework = new File(artifacts, "framework"); //$NON-NLS-1$
+			if (ui.isDirectory() && framework.isDirectory()) {
+				return Status.OK_STATUS;
+			}
 			return getInvalidRichfacesRuntime();
 		}
-		String[] fileList = folder.list(new FilenameFilter() {
+		String[] fileList = lib.list(new FilenameFilter() {
 
 			public boolean accept(File dir, String name) {
 				if (name.startsWith("richfaces") || name.endsWith(".jar")) { //$NON-NLS-1$ //$NON-NLS-2$
