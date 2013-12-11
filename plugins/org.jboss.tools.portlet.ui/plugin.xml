@@ -26,7 +26,7 @@
 		id="org.jboss.tools.portlet.ui.wizard.NewJavaPortletWizard"
 		name="%Java_portlet_wizard_name"
 		class="org.jboss.tools.portlet.ui.internal.wizard.NewPortletWizard"
-		category="org.jboss.tools.jst.web/org.jboss.tools.portlet"
+		category="org.jboss.tools.portlet"
 		icon="icons/portlet_wiz_small.gif">
 		<description>%Portlet_wizard_description</description>
 		<selection class="org.eclipse.core.resources.IResource" />
@@ -35,7 +35,7 @@
 		id="org.jboss.tools.portlet.ui.wizard.NewJSFPortletWizard"
 		name="%JSFSeam_portlet_wizard_name"
 		class="org.jboss.tools.portlet.ui.internal.wizard.NewJSFPortletWizard"
-		category="org.jboss.tools.jst.web/org.jboss.tools.portlet"
+		category="org.jboss.tools.portlet"
 		icon="icons/portlet_wiz_small.gif">
 		<description>%JSFSeam_portlet_wizard_description</description>
 		<selection class="org.eclipse.core.resources.IResource" />
