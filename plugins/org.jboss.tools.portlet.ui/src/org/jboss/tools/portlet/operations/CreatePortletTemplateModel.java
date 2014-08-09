@@ -1,49 +1,55 @@
+/*************************************************************************************
+ * Copyright (c) 2008-2014 Red Hat, Inc. and others.
+ * All rights reserved. This program and the accompanying materials 
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     JBoss by Red Hat - Initial implementation.
+ ************************************************************************************/
 package org.jboss.tools.portlet.operations;
 
 import static org.eclipse.jst.j2ee.internal.common.operations.INewJavaClassDataModelProperties.ABSTRACT_METHODS;
 import static org.eclipse.jst.j2ee.internal.web.operations.INewServletClassDataModelProperties.DESTROY;
-import static org.jboss.tools.portlet.ui.INewPortletClassDataModelProperties.DO_VIEW;
-import static org.jboss.tools.portlet.ui.INewPortletClassDataModelProperties.DO_EDIT;
-import static org.jboss.tools.portlet.ui.INewPortletClassDataModelProperties.DO_HELP;
-import static org.jboss.tools.portlet.ui.INewPortletClassDataModelProperties.DO_DISPATCH;
-import static org.jboss.tools.portlet.ui.INewPortletClassDataModelProperties.PROCESS_ACTION;
-import static org.jboss.tools.portlet.ui.INewPortletClassDataModelProperties.RENDER;
-import static org.jboss.tools.portlet.ui.INewPortletClassDataModelProperties.GET_PORTLET_CONFIG;
 import static org.eclipse.jst.j2ee.internal.web.operations.INewServletClassDataModelProperties.INIT;
 import static org.eclipse.jst.j2ee.internal.web.operations.INewServletClassDataModelProperties.INIT_PARAM;
+import static org.jboss.tools.portlet.ui.INewPortletClassDataModelProperties.DO_DISPATCH;
+import static org.jboss.tools.portlet.ui.INewPortletClassDataModelProperties.DO_EDIT;
+import static org.jboss.tools.portlet.ui.INewPortletClassDataModelProperties.DO_HELP;
+import static org.jboss.tools.portlet.ui.INewPortletClassDataModelProperties.DO_VIEW;
+import static org.jboss.tools.portlet.ui.INewPortletClassDataModelProperties.GET_PORTLET_CONFIG;
+import static org.jboss.tools.portlet.ui.INewPortletClassDataModelProperties.PROCESS_ACTION;
+import static org.jboss.tools.portlet.ui.INewPortletClassDataModelProperties.RENDER;
 import static org.jboss.tools.portlet.ui.IPortletUIConstants.DESTROY_SIGNATURE;
-import static org.jboss.tools.portlet.ui.IPortletUIConstants.PORTLET_INIT_SIGNATURE;
 import static org.jboss.tools.portlet.ui.IPortletUIConstants.DO_DISPATCH_SIGNATURE;
 import static org.jboss.tools.portlet.ui.IPortletUIConstants.DO_EDIT_SIGNATURE;
-import static org.jboss.tools.portlet.ui.IPortletUIConstants.DO_VIEW_SIGNATURE;
 import static org.jboss.tools.portlet.ui.IPortletUIConstants.DO_HELP_SIGNATURE;
+import static org.jboss.tools.portlet.ui.IPortletUIConstants.DO_VIEW_SIGNATURE;
 import static org.jboss.tools.portlet.ui.IPortletUIConstants.GET_PORTLET_CONFIG_SIGNATURE;
-import static org.jboss.tools.portlet.ui.IPortletUIConstants.PROCESS_ACTION_SIGNATURE;
-import static org.jboss.tools.portlet.ui.IPortletUIConstants.RENDER_SIGNATURE;
-
 import static org.jboss.tools.portlet.ui.IPortletUIConstants.METHOD_DESTROY;
-import static org.jboss.tools.portlet.ui.IPortletUIConstants.METHOD_INIT;
-import static org.jboss.tools.portlet.ui.IPortletUIConstants.METHOD_GET_PORTLET_CONFIG;
 import static org.jboss.tools.portlet.ui.IPortletUIConstants.METHOD_DO_DISPATCH;
 import static org.jboss.tools.portlet.ui.IPortletUIConstants.METHOD_DO_EDIT;
 import static org.jboss.tools.portlet.ui.IPortletUIConstants.METHOD_DO_HELP;
 import static org.jboss.tools.portlet.ui.IPortletUIConstants.METHOD_DO_VIEW;
+import static org.jboss.tools.portlet.ui.IPortletUIConstants.METHOD_GET_PORTLET_CONFIG;
+import static org.jboss.tools.portlet.ui.IPortletUIConstants.METHOD_INIT;
 import static org.jboss.tools.portlet.ui.IPortletUIConstants.METHOD_PROCESS_ACTION;
 import static org.jboss.tools.portlet.ui.IPortletUIConstants.METHOD_RENDER;
 import static org.jboss.tools.portlet.ui.IPortletUIConstants.METHOD_TO_STRING;
-
-import static org.jboss.tools.portlet.ui.IPortletUIConstants.QUALIFIED_PORTLET_CONFIG;
-import static org.jboss.tools.portlet.ui.IPortletUIConstants.QUALIFIED_PORTLET_EXCEPTION;
-import static org.jboss.tools.portlet.ui.IPortletUIConstants.QUALIFIED_IO_EXCEPTION;
-import static org.jboss.tools.portlet.ui.IPortletUIConstants.QUALIFIED_SECURITY_EXCEPTION;
-import static org.jboss.tools.portlet.ui.IPortletUIConstants.QUALIFIED_UNAVALIABLE_EXCEPTION;
-import static org.jboss.tools.portlet.ui.IPortletUIConstants.QUALIFIED_PRINTWRITER;
-
-import static org.jboss.tools.portlet.ui.IPortletUIConstants.QUALIFIED_PORTLET_REQUEST;
-import static org.jboss.tools.portlet.ui.IPortletUIConstants.QUALIFIED_PORTLET_RESPONSE;
-
+import static org.jboss.tools.portlet.ui.IPortletUIConstants.PORTLET_INIT_SIGNATURE;
+import static org.jboss.tools.portlet.ui.IPortletUIConstants.PROCESS_ACTION_SIGNATURE;
 import static org.jboss.tools.portlet.ui.IPortletUIConstants.QUALIFIED_ACTION_REQUEST;
 import static org.jboss.tools.portlet.ui.IPortletUIConstants.QUALIFIED_ACTION_RESPONSE;
+import static org.jboss.tools.portlet.ui.IPortletUIConstants.QUALIFIED_IO_EXCEPTION;
+import static org.jboss.tools.portlet.ui.IPortletUIConstants.QUALIFIED_PORTLET_CONFIG;
+import static org.jboss.tools.portlet.ui.IPortletUIConstants.QUALIFIED_PORTLET_EXCEPTION;
+import static org.jboss.tools.portlet.ui.IPortletUIConstants.QUALIFIED_PORTLET_REQUEST;
+import static org.jboss.tools.portlet.ui.IPortletUIConstants.QUALIFIED_PORTLET_RESPONSE;
+import static org.jboss.tools.portlet.ui.IPortletUIConstants.QUALIFIED_PRINTWRITER;
+import static org.jboss.tools.portlet.ui.IPortletUIConstants.QUALIFIED_SECURITY_EXCEPTION;
+import static org.jboss.tools.portlet.ui.IPortletUIConstants.QUALIFIED_UNAVALIABLE_EXCEPTION;
+import static org.jboss.tools.portlet.ui.IPortletUIConstants.RENDER_SIGNATURE;
 
 import java.util.Collection;
 import java.util.Iterator;

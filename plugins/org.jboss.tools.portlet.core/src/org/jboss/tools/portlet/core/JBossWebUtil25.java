@@ -1,3 +1,13 @@
+/*************************************************************************************
+ * Copyright (c) 2008-2014 Red Hat, Inc. and others.
+ * All rights reserved. This program and the accompanying materials 
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     JBoss by Red Hat - Initial implementation.
+ ************************************************************************************/
 package org.jboss.tools.portlet.core;
 
 import java.util.Iterator;
@@ -20,6 +30,11 @@ import org.eclipse.jst.javaee.web.WebApp;
 import org.eclipse.jst.javaee.web.WebFactory;
 import org.eclipse.ui.dialogs.IOverwriteQuery;
 
+/**
+ * 
+ * @author snjeza
+ *
+ */
 public class JBossWebUtil25 implements IJBossWebUtil {
 
 	public void configureContextParam(IProject project,

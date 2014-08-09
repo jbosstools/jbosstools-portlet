@@ -1,18 +1,29 @@
+/*************************************************************************************
+ * Copyright (c) 2008-2014 Red Hat, Inc. and others.
+ * All rights reserved. This program and the accompanying materials 
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     JBoss by Red Hat - Initial implementation.
+ ************************************************************************************/
 package org.jboss.tools.portlet.core.libprov;
 
 import java.io.File;
 
 import org.eclipse.core.expressions.PropertyTester;
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jst.common.project.facet.core.libprov.EnablementExpressionContext;
-import org.eclipse.jst.j2ee.internal.project.J2EEProjectUtilities;
 import org.eclipse.wst.common.project.facet.core.IFacetedProjectBase;
 import org.eclipse.wst.server.core.IRuntime;
 import org.eclipse.wst.server.core.internal.facets.FacetUtil;
 import org.jboss.tools.portlet.core.internal.PortletRuntimeComponentProvider;
 
-
+/**
+ * 
+ * @author snjeza
+ *
+ */
 public final class RuntimeLibraryProviderPropertyTester extends PropertyTester {
 	
 	public boolean test(final Object receiver, final String property,

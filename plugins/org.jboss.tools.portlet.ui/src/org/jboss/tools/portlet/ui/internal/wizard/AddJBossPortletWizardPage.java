@@ -1,3 +1,13 @@
+/*************************************************************************************
+ * Copyright (c) 2008-2014 Red Hat, Inc. and others.
+ * All rights reserved. This program and the accompanying materials 
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     JBoss by Red Hat - Initial implementation.
+ ************************************************************************************/
 package org.jboss.tools.portlet.ui.internal.wizard;
 
 import static org.eclipse.jst.j2ee.internal.web.operations.INewWebClassDataModelProperties.USE_EXISTING_CLASS;
@@ -11,10 +21,10 @@ import static org.jboss.tools.portlet.ui.INewPortletClassDataModelProperties.COP
 import static org.jboss.tools.portlet.ui.INewPortletClassDataModelProperties.IF_EXISTS;
 import static org.jboss.tools.portlet.ui.INewPortletClassDataModelProperties.INITIAL_WINDOW_STATE;
 import static org.jboss.tools.portlet.ui.INewPortletClassDataModelProperties.INSTANCE_NAME;
-import static org.jboss.tools.portlet.ui.INewPortletClassDataModelProperties.NAME;
 import static org.jboss.tools.portlet.ui.INewPortletClassDataModelProperties.IS_JSF_PORTLET;
 import static org.jboss.tools.portlet.ui.INewPortletClassDataModelProperties.IS_SEAM_PORTLET;
 import static org.jboss.tools.portlet.ui.INewPortletClassDataModelProperties.JBOSS_APP;
+import static org.jboss.tools.portlet.ui.INewPortletClassDataModelProperties.NAME;
 import static org.jboss.tools.portlet.ui.INewPortletClassDataModelProperties.PAGE_NAME;
 import static org.jboss.tools.portlet.ui.INewPortletClassDataModelProperties.PAGE_REGION;
 import static org.jboss.tools.portlet.ui.INewPortletClassDataModelProperties.PARENT_PORTAL;
@@ -47,11 +57,9 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.wst.common.componentcore.datamodel.properties.IFacetProjectCreationDataModelProperties;
 import org.eclipse.wst.common.componentcore.internal.operation.IArtifactEditOperationDataModelProperties;
 import org.eclipse.wst.common.frameworks.datamodel.DataModelEvent;
 import org.eclipse.wst.common.frameworks.datamodel.IDataModel;
-import org.eclipse.wst.common.frameworks.datamodel.IDataModelListener;
 import org.eclipse.wst.common.frameworks.internal.datamodel.ui.DataModelWizardPage;
 import org.eclipse.wst.common.frameworks.internal.plugin.WTPCommonPlugin;
 import org.jboss.tools.portlet.ui.IPortletUIConstants;

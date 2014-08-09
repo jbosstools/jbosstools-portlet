@@ -1,3 +1,13 @@
+/*************************************************************************************
+ * Copyright (c) 2008-2014 Red Hat, Inc. and others.
+ * All rights reserved. This program and the accompanying materials 
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     JBoss by Red Hat - Initial implementation.
+ ************************************************************************************/
 package org.jboss.tools.portlet.core.internal;
 
 import java.io.File;
@@ -17,9 +27,13 @@ import org.eclipse.wst.server.core.internal.facets.RuntimeFacetComponentProvider
 import org.jboss.ide.eclipse.as.core.server.IJBossServerConstants;
 import org.jboss.ide.eclipse.as.core.server.IJBossServerRuntime;
 import org.jboss.tools.portlet.core.IPortletConstants;
-import org.jboss.tools.portlet.core.Messages;
 import org.jboss.tools.portlet.core.PortletCoreActivator;
 
+/**
+ * 
+ * @author snjeza
+ *
+ */
 public class PortletRuntimeComponentProvider extends
 		RuntimeFacetComponentProviderDelegate {
 

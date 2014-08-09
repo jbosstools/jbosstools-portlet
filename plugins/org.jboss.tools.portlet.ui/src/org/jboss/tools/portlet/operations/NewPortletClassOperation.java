@@ -1,3 +1,13 @@
+/*************************************************************************************
+ * Copyright (c) 2008-2014 Red Hat, Inc. and others.
+ * All rights reserved. This program and the accompanying materials 
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     JBoss by Red Hat - Initial implementation.
+ ************************************************************************************/
 package org.jboss.tools.portlet.operations;
 
 import java.net.URL;
@@ -6,12 +16,10 @@ import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.codegen.jet.JETException;
-import org.eclipse.jdt.core.IPackageFragment;
 import org.eclipse.jst.j2ee.internal.common.operations.CreateJavaEEArtifactTemplateModel;
 import org.eclipse.jst.j2ee.internal.plugin.J2EEPlugin;
 import org.eclipse.jst.j2ee.internal.project.WTPJETEmitter;
 import org.eclipse.jst.j2ee.internal.web.operations.NewWebClassOperation;
-import org.eclipse.wst.common.componentcore.internal.operation.ArtifactEditProviderOperation;
 import org.eclipse.wst.common.frameworks.datamodel.IDataModel;
 import org.eclipse.wst.common.frameworks.internal.WTPPlugin;
 import org.jboss.tools.portlet.ui.PortletUIActivator;
@@ -20,6 +28,7 @@ import org.jboss.tools.portlet.ui.PortletUIActivator;
  * 
  * @see org.eclipse.jst.j2ee.internal.web.operations.NewServletClassOperation
  * 
+ * @author snjeza
  */
 public class NewPortletClassOperation extends NewWebClassOperation {
 

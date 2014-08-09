@@ -1,3 +1,13 @@
+/*************************************************************************************
+ * Copyright (c) 2008-2014 Red Hat, Inc. and others.
+ * All rights reserved. This program and the accompanying materials 
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     JBoss by Red Hat - Initial implementation.
+ ************************************************************************************/
 package org.jboss.tools.portlet.ui.internal.wizard.action.xpl;
 
 import static org.eclipse.jst.j2ee.internal.common.operations.INewJavaClassDataModelProperties.CLASS_NAME;
@@ -21,6 +31,11 @@ import org.eclipse.wst.common.frameworks.datamodel.IDataModel;
 import org.eclipse.wst.common.project.facet.core.FacetedProjectFramework;
 import org.jboss.tools.portlet.ui.PortletUIActivator;
 
+/**
+ * 
+ * @author snjeza
+ *
+ */
 public abstract class AddJavaEEArtifactOperationEx extends AbstractDataModelOperation {
 	
 	protected IModelProvider provider;

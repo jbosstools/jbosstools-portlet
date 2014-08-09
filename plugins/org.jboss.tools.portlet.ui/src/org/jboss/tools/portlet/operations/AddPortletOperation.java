@@ -1,3 +1,13 @@
+/*************************************************************************************
+ * Copyright (c) 2008-2014 Red Hat, Inc. and others.
+ * All rights reserved. This program and the accompanying materials 
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     JBoss by Red Hat - Initial implementation.
+ ************************************************************************************/
 package org.jboss.tools.portlet.operations;
 
 import static org.eclipse.jst.j2ee.internal.web.operations.INewServletClassDataModelProperties.INIT_PARAM;
@@ -6,8 +16,8 @@ import static org.eclipse.jst.j2ee.internal.web.operations.INewWebClassDataModel
 import static org.jboss.tools.portlet.ui.INewPortletClassDataModelProperties.ADD_JBOSS_APP;
 import static org.jboss.tools.portlet.ui.INewPortletClassDataModelProperties.ADD_JBOSS_PORTLET;
 import static org.jboss.tools.portlet.ui.INewPortletClassDataModelProperties.ADD_PORTLET;
-import static org.jboss.tools.portlet.ui.INewPortletClassDataModelProperties.COPY_JSF_TEMPLATES;
 import static org.jboss.tools.portlet.ui.INewPortletClassDataModelProperties.CONFIGURE_GATEIN_PARAMETERS;
+import static org.jboss.tools.portlet.ui.INewPortletClassDataModelProperties.COPY_JSF_TEMPLATES;
 import static org.jboss.tools.portlet.ui.INewPortletClassDataModelProperties.EDIT_MODE;
 import static org.jboss.tools.portlet.ui.INewPortletClassDataModelProperties.HELP_MODE;
 import static org.jboss.tools.portlet.ui.INewPortletClassDataModelProperties.IF_EXISTS;
@@ -71,7 +81,6 @@ import org.jboss.tools.portlet.core.JBossWebUtil;
 import org.jboss.tools.portlet.core.JBossWebUtil25;
 import org.jboss.tools.portlet.core.PortletCoreActivator;
 import org.jboss.tools.portlet.ui.INewPortletClassDataModelProperties;
-import org.jboss.tools.portlet.ui.Messages;
 import org.jboss.tools.portlet.ui.PortletUIActivator;
 import org.jboss.tools.portlet.ui.internal.wizard.action.xpl.AddWebClassOperationEx;
 import org.osgi.framework.Bundle;
