@@ -1,5 +1,5 @@
 /*************************************************************************************
- * Copyright (c) 2008-2014 Red Hat, Inc. and others.
+ * Copyright (c) 2008-2015 Red Hat, Inc. and others.
  * All rights reserved. This program and the accompanying materials 
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -21,7 +21,6 @@ import org.eclipse.jst.javaee.web.WebAppVersionType;
 import org.eclipse.wst.common.frameworks.datamodel.IDataModel;
 import org.eclipse.wst.common.project.facet.core.IDelegate;
 import org.eclipse.wst.common.project.facet.core.IFacetedProject;
-import org.eclipse.wst.common.project.facet.core.IProjectFacet;
 import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
 import org.jboss.tools.portlet.core.IJBossWebUtil;
@@ -48,6 +47,10 @@ public class SeamPortletFacetInstallDelegate implements IDelegate {
 	public void execute(final IProject project, final IProjectFacetVersion fv,
 			final Object cfg, final IProgressMonitor monitor)
 			throws CoreException {
+
+		if(!SeamFacetUtil.isSeamAvailable()) {
+			return;
+		}
 
 		if (monitor != null) {
 			monitor.beginTask("", 1); //$NON-NLS-1$
@@ -117,9 +120,8 @@ public class SeamPortletFacetInstallDelegate implements IDelegate {
 
 				// optional for Seam portlets version 2.1.x and up
 				try {
-					IProjectFacet seamFacet = ProjectFacetsManager.getProjectFacet("jst.seam"); //$NON-NLS-1$
 					final IFacetedProject fproj = ProjectFacetsManager.create(project);
-					IProjectFacetVersion sfVersion = fproj.getProjectFacetVersion(seamFacet);
+					IProjectFacetVersion sfVersion = fproj.getProjectFacetVersion(SeamFacetUtil.SEAM_FACET);
 					if (sfVersion.getVersionString().startsWith("1") || sfVersion.getVersionString().startsWith("2.0")) {  //$NON-NLS-1$//$NON-NLS-2$
 						name = "javax.faces.LIFECYCLE_ID"; //$NON-NLS-1$
 						value = "SEAM_PORTLET"; //$NON-NLS-1$
