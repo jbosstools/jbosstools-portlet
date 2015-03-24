@@ -77,9 +77,6 @@ public class PortletPostInstallListener implements IFacetedProjectListener {
 
 	private static final String SOURCES_JAR = "sources.jar"; //$NON-NLS-1$
 
-	private static final String JST_SEAM_FACET = "jst.seam"; //$NON-NLS-1$
-	
-	private static final IProjectFacet seamFacet = ProjectFacetsManager.getProjectFacet(JST_SEAM_FACET);
 	private static final IOverwriteQuery OVERWRITE_NONE_QUERY = new IOverwriteQuery()
     {
       public String queryOverwrite(String pathString)
@@ -247,21 +244,13 @@ public class PortletPostInstallListener implements IFacetedProjectListener {
 
 	
 	private boolean addRichfacesLibraries(IProject project) {
-		boolean isSeamFacet = false;
-		try {
-			isSeamFacet = FacetedProjectFramework.hasProjectFacet(project,
-					JST_SEAM_FACET);
-		} catch (CoreException e) {
-			PortletCoreActivator.log(e);
-		}
-		if (isSeamFacet) {
-			return true;
-		}
-		return richfacesCapabilities;
+		boolean isSeamFacet = SeamFacetUtil.hasSeamFacet(project);
+		return isSeamFacet || richfacesCapabilities;
 	}
 	
 	private void addLibrariesFromServerRuntime(IFacetedProject facetedProject) {
-		final boolean isSeamProject = facetedProject.hasProjectFacet(seamFacet);
+		IProject project = facetedProject.getProject();
+		final boolean isSeamProject = SeamFacetUtil.hasSeamFacet(project);
 		final boolean addRichfacesFromRichfacesRuntime = richfacesCapabilities && IPortletConstants.LIBRARIES_PROVIDED_BY_RICHFACES.equals(richfacesType) && !isEPP;
 		if (addRichfacesFromRichfacesRuntime) {
 			addRichfacesFromRichfacesRuntime(facetedProject);
@@ -297,7 +286,6 @@ public class PortletPostInstallListener implements IFacetedProjectListener {
 				return;
 			}
 			try {
-				IProject project = facetedProject.getProject();
 				final IProject earProject = getEarProject(project, isSeamProject);
 				
 				String[] fileList = richfacesLib.list(new FilenameFilter() {
@@ -381,7 +369,7 @@ public class PortletPostInstallListener implements IFacetedProjectListener {
 
 	private void addRichfacesFromRichfacesRuntime(
 			IFacetedProject facetedProject) {
-		final boolean isSeamProject = facetedProject.hasProjectFacet(seamFacet);
+		final boolean isSeamProject = SeamFacetUtil.hasSeamFacet(facetedProject.getProject());
 		if (!isSeamProject && !richfacesCapabilities) {
 			return;
 		}
@@ -608,8 +596,8 @@ public class PortletPostInstallListener implements IFacetedProjectListener {
 			return;
 		}
 		try {
-			boolean isSeamProject = facetedProject.hasProjectFacet(seamFacet);
 			IProject project = facetedProject.getProject();
+			boolean isSeamProject = SeamFacetUtil.hasSeamFacet(project);
 			List<File> filesToImport = prepareList(seamLib, facetedProject,
 					isSeamProject);
 			if (filesToImport != null) {
@@ -740,8 +728,8 @@ public class PortletPostInstallListener implements IFacetedProjectListener {
 			ZipFile zipFile = new ZipFile(richFacesPortletZip);
 			ZipFileStructureProvider structureProvider = new ZipFileStructureProvider(
 					zipFile);
-			boolean isSeamProject = facetedProject
-					.hasProjectFacet(seamFacet);
+			IProject project = facetedProject.getProject();
+			boolean isSeamProject = SeamFacetUtil.hasSeamFacet(project);
 			final boolean addRichfacesFromRichfacesRuntime = richfacesCapabilities
 					&& IPortletConstants.LIBRARIES_PROVIDED_BY_RICHFACES
 							.equals(richfacesType);
@@ -751,7 +739,6 @@ public class PortletPostInstallListener implements IFacetedProjectListener {
 			List<ZipEntry> list = prepareList(zipFile, facetedProject,
 					isSeamProject, addRichfacesFromRichfacesRuntime);
 
-			IProject project = facetedProject.getProject();
 			IProject earProject = getEarProject(project, isSeamProject);
 
 			IVirtualComponent component = ComponentCore

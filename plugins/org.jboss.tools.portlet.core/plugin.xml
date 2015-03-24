@@ -45,34 +45,6 @@
  	  </action>
       
    </extension>
-
-   <!--
-   <extension
-        point="org.eclipse.wst.common.project.facet.core.presets">
-     <static-preset id="preset.jboss.portlet.v20">
-	    <label>Portlet Project v2.0</label>
-	    <facet id="jst.java" version="5.0" />
-	    <facet id="jst.web" version="2.5"/>
-	    <facet id="jboss.portlet" version="2.0" />
-        <description>Portlet Project v2.0</description>
-     </static-preset>
-   </extension>
-   
-   <extension
-        point="org.eclipse.wst.common.project.facet.core.presets">
-     <dynamic-preset id="preset.jboss.portlet.v10">
-       <factory class="org.jboss.tools.portlet.core.internal.project.facet.PortletConfigurationPresetFactory10"/>
-     </dynamic-preset>
-   </extension>
-   -->
-   <!--
-   <extension point="org.eclipse.wst.common.project.facet.core.runtimes">
-    	<supported>
-			<runtime-component any="true"/>
-        		<facet id="jboss.portlet" version="1.0,2.0"/> 
-    	</supported>
-   </extension>
-   -->
    
    <extension
         point="org.eclipse.wst.common.project.facet.core.listeners">
@@ -129,28 +101,6 @@
  	  </action>
       
    </extension>
-
-   <!--
-   <extension
-        point="org.eclipse.wst.common.project.facet.core.presets">
-     <static-preset id="preset.jboss.jsfportlet.v20">
-	    <label>JBoss JSF Portlet Project v2.0</label>
-	    <facet id="jst.java" version="5.0" />
-	    <facet id="jst.web" version="2.5"/>
-	    <facet id="jst.jsf" version="1.2"/>
-	    <facet id="jboss.portlet" version="2.0" />
-	    <facet id="jboss.jsfportlet" version="1.0" />
-        <description>JBoss JSF Portlet Project v2.0</description>
-     </static-preset>
-   </extension>
-   
-   <extension
-        point="org.eclipse.wst.common.project.facet.core.presets">
-     <dynamic-preset id="preset.jboss.jsfportlet.v10">
-       <factory class="org.jboss.tools.portlet.core.internal.project.facet.JSFPortletConfigurationPresetFactory10"/>
-     </dynamic-preset>
-   </extension>
-   -->
    
    <extension point="org.eclipse.wst.common.project.facet.core.runtimes">
   		<runtime-component-type id="org.jboss.tools.portlet.core.runtime.component"/>
@@ -163,15 +113,6 @@
   		</supported>
    </extension>
    
-   <!--
-   	<extension point="org.eclipse.jst.server.core.internalRuntimeComponentProviders">
-  		<runtimeComponentProvider
-    		id="org.jboss.tools.portlet.core.runtimes"
-    		class="org.jboss.tools.portlet.core.internal.PortletRuntimeComponentProvider"
-    		runtimeTypeIds="org.jboss.ide.eclipse.as.runtime.*,org.eclipse.jst.server.tomcat.runtime.*"/>
-	</extension>
-   -->
-   
    <extension point="org.eclipse.jst.server.core.internalRuntimeComponentProviders">
   		<runtimeComponentProvider
     		id="org.jboss.tools.portlet.core.runtimes"
@@ -179,17 +120,6 @@
     		runtimeTypeIds="*"/>
 	</extension>
 	
-   <!--  
-   <extension point="org.eclipse.wst.common.project.facet.core.runtimes">
-    	<supported>
-			<runtime-component any="true"/>
-        		<facet id="jboss.portlet" version="1.0,2.0"/>
-    			<facet id="jboss.jsfportlet" version="1.0"/>
-    			<facet id="jboss.seamportlet" version="1.0"/>
-    	</supported>
-   </extension>
-   -->
-   
    <extension point="org.eclipse.jdt.core.classpathContainerInitializer">
      <classpathContainerInitializer class="org.jboss.tools.portlet.core.internal.JSFPortlet10LibrariesContainerInitializer"
       id="org.jboss.tools.portlet.core.internal.jsfportletlibrarycontainer.v10"/>
@@ -259,29 +189,6 @@
         <description>JBoss Seam Portlet Project v2.2</description>
      </static-preset>
    </extension>
-   <!--
-   <extension
-        point="org.eclipse.wst.common.project.facet.core.presets">
-     <dynamic-preset id="preset.jboss.seamportlet.v10">
-       <factory class="org.jboss.tools.portlet.core.internal.project.facet.SeamPortletConfigurationPresetFactory10"/>
-     </dynamic-preset>
-   </extension>
-   -->
-   <!--
-   <extension point="org.eclipse.wst.common.project.facet.core.runtimes">
-    	<supported>
-			<runtime-component any="true"/>
-        		<facet id="jboss.seamportlet" version="1.0"/> 
-    	</supported>
-   </extension>
-   -->
-   
-   <!--
-   <extension point="org.eclipse.jdt.core.classpathContainerInitializer">
-     <classpathContainerInitializer class="org.jboss.tools.portlet.core.internal.SeamPortlet10LibrariesContainerInitializer"
-      id="org.jboss.tools.portlet.core.internal.seamportletlibrarycontainer.v10"/>
-   </extension>
-   -->
    
    <extension point="org.eclipse.wst.xml.core.catalogContributions">
         <catalogContribution id="default">
